@@ -46,4 +46,4 @@ If you want to adapt the preprocessing you can adapt the preprocessing steps in 
 The dependencies of the script can be found in the requirements.txt file.
 
 ## Publication
-10.5281/zenodo.10875988
+https://zenodo.org/records/10875988
