@@ -1,0 +1,108 @@
+instance: 1
+original_name: building_01
+
+timeframe: &timeframe
+  start: 2018-02-02
+  end: 2020-12-02
+
+elec_meters:
+  1: &smart_meter
+    device_model: CII-Adapter
+    site_meter: true
+    data_location: building_01/cii-adapter.h5
+    timeframe:
+        <<: *timeframe
+        start: 2018-03-14
+  2: *smart_meter
+  3: *smart_meter
+  4: &3-phase_phase1
+    device_model: smart-me_3-phase
+    submeter_of: 1
+    data_location: building_01/boiler.h5
+  5: &3-phase_phase2
+    device_model: smart-me_3-phase
+    submeter_of: 2
+    data_location: building_01/boiler.h5
+  6: &3-phase_phase3
+    device_model: smart-me_3-phase
+    submeter_of: 3
+    data_location: building_01/boiler.h5
+  7:
+    <<: *3-phase_phase1
+    data_location: building_01/dishwasher.h5
+    timeframe:
+        <<: *timeframe
+        start: 2018-05-12
+  8:
+    <<: *3-phase_phase2
+    data_location: building_01/dishwasher.h5
+    timeframe:
+        <<: *timeframe    
+        start: 2018-05-12
+  9:
+    <<: *3-phase_phase3
+    data_location: building_01/dishwasher.h5
+    timeframe:
+        <<: *timeframe
+        start: 2018-05-12
+  10: &plug_phase3
+    device_model: smart-me_plug
+    submeter_of: 3
+    data_location: building_01/freezer.h5
+  11:
+    <<: *3-phase_phase1
+    data_location: building_01/oven.h5
+  12:
+    <<: *3-phase_phase2
+    data_location: building_01/oven.h5
+  13:
+    <<: *3-phase_phase3
+    data_location: building_01/oven.h5
+  14:
+    <<: *3-phase_phase1
+    data_location: building_01/rechaud.h5
+  15:
+    <<: *3-phase_phase2
+    data_location: building_01/rechaud.h5
+  16:
+    <<: *3-phase_phase3
+    data_location: building_01/rechaud.h5
+  17:
+    <<: *3-phase_phase1
+    data_location: building_01/washing_machine.h5
+  18:
+    <<: *3-phase_phase2
+    data_location: building_01/washing_machine.h5
+  19:
+    <<: *3-phase_phase3
+    data_location: building_01/washing_machine.h5
+
+appliances:
+  - original_name: boiler
+    type: electric water heating appliance
+    instance: 1
+    meters: [4, 5, 6]
+
+  - type: dishwasher
+    instance: 1
+    meters: [7, 8, 9]
+    
+  - type: freezer
+    instance: 1
+    meters: [10]
+
+  - type: electric oven
+    instance: 1
+    meters: [11, 12, 13]
+
+  - original_name: rechaud
+    type: electric stove
+    instance: 1
+    meters: [14, 15, 16]
+
+  - type: washing machine
+    instance: 1
+    meters: [17, 18, 19]
+
+description: >
+  The cii adapter was replaced at 2018-11-23.

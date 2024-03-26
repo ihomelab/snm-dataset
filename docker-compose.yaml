@@ -1,0 +1,36 @@
+version: "3.3"
+services:
+    preprocess:
+        build: .
+        stdin_open: true
+        tty: true
+        command: bash -c "python3 src/entrypoints/preprocess.py"
+        user: 1000:100
+        volumes:
+            - .:/home/ihl/snm-data-publication_code
+        environment:
+            - OPENBLAS_NUM_THREADS=1
+
+    jupyter:
+        build: .
+        stdin_open: true
+        tty: true
+        ports:
+            - "6005:6006"
+        command: bash -c "jupyter notebook --ip=0.0.0.0 --port 6006"
+        user: 1000:100
+        volumes:
+            - .:/home/ihl/snm-data-publication_code
+        environment:
+            - OPENBLAS_NUM_THREADS=1
+
+    debug:
+        build: .
+        stdin_open: true
+        tty: true
+        command: bash
+        user: 1000:100
+        volumes:
+            - .:/home/ihl/snm-data-publication_code
+        environment:
+            - OPENBLAS_NUM_THREADS=1

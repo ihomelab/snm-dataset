@@ -1,0 +1,62 @@
+instance: 18
+original_name: building_18
+
+timeframe: &timeframe
+  start: 2019-11-28
+  end: 2020-11-04
+  
+elec_meters:
+  1: &smart_meter
+    device_model: CII-Adapter
+    site_meter: true
+    data_location: building_18/cii-adapter.h5
+    timeframe:
+        <<: *timeframe
+        start: 2020-02-05
+  2: *smart_meter
+  3: *smart_meter
+  4: &plug_phase3
+    device_model: smart-me_plug
+    submeter_of: 3
+    data_location: building_18/freezer.h5
+  5: &plug_phase2
+    device_model: smart-me_plug
+    submeter_of: 2
+    data_location: building_18/fridge.h5
+  6: &OnOff_phase0
+    device_model: on_off_sensor
+    submeter_of: 0
+    submeter_of_is_uncertain: true
+    data_location: building_18/heat_pump.h5
+    timeframe:
+        start: 2020-04-22
+        end: 2020-11-05
+  7:
+    <<: *plug_phase2
+    data_location: building_18/tumble_dryer.h5
+  8:
+    <<: *plug_phase3
+    data_location: building_18/washing_machine.h5
+
+appliances:
+  - type: freezer
+    instance: 1
+    meters: [4]
+
+  - type: fridge
+    instance: 1
+    meters: [5]
+
+  - type: heat pump
+    instance: 1
+    meters: [6]
+
+  - type: tumble_dryer
+    instance: 1
+    meters: [7]
+
+  - type: washing machine
+    instance: 1
+    meters: [8]
+
+description: >

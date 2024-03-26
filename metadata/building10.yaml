@@ -1,0 +1,59 @@
+instance: 10
+original_name: building_10
+
+timeframe: &timeframe
+  start: 2020-03-04
+  end: 2020-09-15
+  
+elec_meters:
+  1: &smart_meter
+    device_model: CII-Adapter
+    site_meter: true
+    data_location: building_10/cii-adapter.h5
+  2: *smart_meter
+  3: *smart_meter
+  4: &plug_phase2
+    device_model: smart-me_plug
+    submeter_of: 2
+    data_location: building_10/freezer.h5
+  5:
+    <<: *plug_phase2
+    data_location: building_10/fridge.h5
+  6:
+    <<: *plug_phase2
+    data_location: building_10/tumble_dryer.h5
+  7: &plug_phase3
+    device_model: smart-me_plug
+    submeter_of: 3
+    data_location: building_10/washing_machine.h5
+  8: &OnOff_phase0
+    device_model: on_off_sensor
+    submeter_of: 0
+    submeter_of_is_uncertain: true
+    data_location: building_10/electric_stove.h5
+    timeframe:
+        start: 2020-02-27
+        end: 2020-11-01
+
+appliances:
+  - type: freezer
+    instance: 1
+    meters: [4]
+
+  - type: fridge
+    instance: 1
+    meters: [5]
+
+  - type: tumble dryer
+    instance: 1
+    meters: [6]
+
+  - type: washing machine
+    instance: 1
+    meters: [7]
+
+  - type: electric stove
+    instance: 1
+    meters: [8]
+
+description: >

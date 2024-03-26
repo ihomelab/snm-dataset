@@ -1,0 +1,101 @@
+instance: 5
+original_name: building_05
+
+timeframe: &timeframe
+  start: 2018-03-22
+  end: 2020-12-02
+  
+elec_meters:
+  1: &smart_meter
+    device_model: CII-Adapter
+    site_meter: true
+    data_location: building_05/cii-adapter.h5
+    timeframe:
+        <<: *timeframe
+        start: 2018-04-19
+  2: *smart_meter
+  3: *smart_meter
+  4: &1-phase_phase2
+    device_model: smart-me_1-phase
+    submeter_of: 2
+    data_location: building_05/AHU.h5
+  5: &plug_phase2
+    device_model: smart-me_plug
+    submeter_of: 2
+    data_location: building_05/coffee_maker.h5
+  6: &plug_phase1
+    device_model: smart-me_plug
+    submeter_of: 1
+    data_location: building_05/dishwasher.h5
+    timeframe:
+        <<: *timeframe
+        end: 2020-08-02
+  7: &3-phase_phase1
+    device_model: smart-me_3-phase
+    submeter_of: 1
+    data_location: building_05/electric_stove.h5
+  8: &3-phase_phase2
+    device_model: smart-me_3-phase
+    submeter_of: 2
+    data_location: building_05/electric_stove.h5
+  9: &3-phase_phase3
+    device_model: smart-me_3-phase
+    submeter_of: 3
+    data_location: building_05/electric_stove.h5
+  10:
+    <<: *plug_phase1
+    device_model: smart-me_plug
+    submeter_of: 1
+    data_location: building_05/fridge.h5
+    timeframe:
+        <<: *timeframe
+        end: 2020-09-30
+  11: &plug_phase3
+    device_model: smart-me_plug
+    submeter_of: 3
+    data_location: building_05/tumble_dryer.h5
+  12:
+    <<: *plug_phase1
+    data_location: building_05/washing_machine.h5
+
+appliances:
+  - type: AHU
+    instance: 1
+    meters: [4]
+
+  - type: coffee maker
+    instance: 1
+    meters: [5]
+
+  - type: dish washer
+    instance: 1
+    meters: [6]
+
+  - type: electric stove
+    instance: 1
+    meters: [7, 8, 9]
+
+  - type: fridge
+    instance: 1
+    meters: [10]
+
+  - type: tumble dryer
+    instance: 1
+    meters: [11]
+
+  - type: washing machine
+    instance: 1
+    meters: [12]
+    dates_active:
+      end: 2018-05-03
+
+  - type: washing machine
+    instance: 2
+    meters: [12]
+    dates_active:
+      start: 2018-05-03
+      end:
+
+description: >
+  A new washing machine was installed at 2018-05-03.
+  The c-ii adapter was replaced at 2018-12-03.

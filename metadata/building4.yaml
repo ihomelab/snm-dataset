@@ -1,0 +1,121 @@
+instance: 4
+original_name: building_04
+
+timeframe: &timeframe
+  start: 2018-04-23
+  end: 2020-11-25
+  
+elec_meters:
+  1: &smart_meter
+    device_model: CII-Adapter
+    site_meter: true
+    data_location: building_04/cii-adapter.h5
+    timeframe:
+        <<: *timeframe
+        start: 2018-08-30
+  2: *smart_meter
+  3: *smart_meter
+  4: &plug_phase1
+    device_model: smart-me_plug
+    submeter_of: 1
+    data_location: building_04/dishwasher.h5
+  5: &3-phase_phase1
+    device_model: smart-me_3-phase
+    submeter_of: 1
+    data_location: building_04/electric_stove_oven.h5
+  6: &3-phase_phase2
+    device_model: smart-me_3-phase
+    submeter_of: 2
+    data_location: building_04/electric_stove_oven.h5
+  7: &3-phase_phase3
+    device_model: smart-me_3-phase
+    submeter_of: 3
+    data_location: building_04/electric_stove_oven.h5
+  8:
+    <<: *3-phase_phase1
+    data_location: building_04/electric_vehicle_1.h5
+    timeframe:
+        <<: *timeframe
+        end: 2018-11-01
+  9:
+    <<: *3-phase_phase2
+    data_location: building_04/electric_vehicle_1.h5
+    timeframe:
+        <<: *timeframe
+        end: 2018-11-01
+  10:
+    <<: *3-phase_phase3
+    data_location: building_04/electric_vehicle_1.h5
+    timeframe:
+        <<: *timeframe
+        end: 2018-11-01
+  11:
+    <<: *3-phase_phase1
+    data_location: building_04/electric_vehicle_2.h5
+    timeframe:
+        <<: *timeframe
+        end: 2020-10-24
+  12:
+    <<: *3-phase_phase2
+    data_location: building_04/electric_vehicle_2.h5
+    timeframe:
+        <<: *timeframe
+        end: 2020-10-24
+  13:
+    <<: *3-phase_phase3
+    data_location: building_04/electric_vehicle_2.h5
+    timeframe:
+        <<: *timeframe
+        end: 2020-10-24
+  14:
+    <<: *plug_phase1
+    data_location: building_04/fridge.h5
+  15: &plug_phase3
+    device_model: smart-me_plug
+    submeter_of: 3
+    data_location: building_04/tumble_dryer.h5
+    timeframe:
+        <<: *timeframe
+        end: 2020-11-21
+  16:
+    <<: *plug_phase3
+    data_location: building_04/washing_machine.h5
+    timeframe:
+        <<: *timeframe
+        end: 2020-11-21
+
+appliances:
+  - type: dish washer
+    instance: 1
+    meters: [4]
+
+  - type: electric stove
+    instance: 1
+    meters: [5, 6, 7]
+
+  - type: electric vehicle
+    instance: 1
+    meters: [8, 9, 10]
+
+  - type: electric vehicle
+    instance: 2
+    meters: [11, 12, 13]
+
+  - type: fridge
+    instance: 1
+    meters: [14]
+
+  - type: tumble dryer
+    instance: 1
+    meters: [15]
+
+  - type: washing machine
+    instance: 1
+    meters: [16]
+
+description: >
+  At 2018-11-01 the sensors 2 (dishwasher), 12 (tumble_dryer) and 13 (washing_machine) broke. 
+  They have been replaced at 2018-12-14.
+  The sensor [8, 9, 10] (electric_vehicle_1) did also break, but was not replaced. Because a second electric  
+  vehicle charging stations was available.
+  Stove and oven are connected to the same electrical submeter.

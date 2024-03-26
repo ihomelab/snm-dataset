@@ -1,0 +1,48 @@
+instance: 13
+original_name: building_13
+
+timeframe: &timeframe
+  start: 2020-02-19
+  end: 2020-10-30
+  
+elec_meters:
+  1: &smart_meter
+    device_model: CII-Adapter
+    site_meter: true
+    data_location: building_13/cii-adapter.h5
+  2: *smart_meter
+  3: *smart_meter
+  4: &plug_phase0
+    device_model: smart-me_plug
+    submeter_of: 0
+    submeter_of_is_uncertain: True
+    data_location: building_13/electric_vehicle.h5
+    timeframe:
+        <<: *timeframe
+        start: 2020-02-29
+        end: 2020-05-29
+  5: &plug_phase2
+    device_model: smart-me_plug
+    submeter_of: 2
+    data_location: building_13/freezer.h5
+  6: &plug_phase3
+    device_model: smart-me_plug
+    submeter_of: 3
+    data_location: building_13/fridge.h5
+
+appliances:
+  - type: electric vehicle
+    instance: 1
+    meters: [4]
+    brand: twike
+
+  - type: freezer
+    instance: 1
+    meters: [5]
+
+  - type: fridge
+    instance: 1
+    meters: [6]
+
+description: >
+  The phase of the electric vehicle [4] is not determinable.

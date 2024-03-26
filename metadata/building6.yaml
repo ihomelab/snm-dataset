@@ -1,0 +1,104 @@
+instance: 6
+original_name: building_06
+
+timeframe: &timeframe
+  start: 2018-03-27
+  end: 2020-10-29
+
+elec_meters:
+  1: &smart_meter
+    device_model: CII-Adapter
+    site_meter: true
+    data_location: building_06/cii-adapter.h5
+    timeframe:
+        start: 2018-05-08
+        end: 2020-10-12
+  2: *smart_meter
+  3: *smart_meter
+  4: &plug_phase2
+    device_model: smart-me_plug
+    submeter_of: 2
+    data_location: building_06/AHU.h5
+  5: &3-phase_phase1
+    device_model: smart-me_3-phase
+    submeter_of: 1
+    data_location: building_06/boiler.h5
+    timeframe:
+        <<: *timeframe
+        end: 2019-07-05
+  6: &3-phase_phase2
+    device_model: smart-me_3-phase
+    submeter_of: 2
+    data_location: building_06/boiler.h5
+    timeframe:
+        <<: *timeframe
+        end: 2019-07-05
+  7: &3-phase_phase3
+    device_model: smart-me_3-phase
+    submeter_of: 3
+    data_location: building_06/boiler.h5
+    timeframe:
+        <<: *timeframe
+        end: 2019-07-05
+  8: &plug_phase3
+    device_model: smart-me_plug
+    submeter_of: 3
+    data_location: building_06/dishwasher.h5
+  9:
+    <<: *3-phase_phase1
+    data_location: building_06/electric_stove.h5
+  10:
+    <<: *3-phase_phase2
+    data_location: building_06/electric_stove.h5
+  11:
+    <<: *3-phase_phase3
+    data_location: building_06/electric_stove.h5
+  12:
+    <<: *plug_phase2
+    data_location: building_06/fridge.h5
+  13: &plug_phase1
+    device_model: smart-me_plug
+    submeter_of: 1
+    data_location: building_06/tumble_dryer.h5
+  14:
+    <<: *3-phase_phase1
+    data_location: building_06/washing_machine.h5
+  15:
+    <<: *3-phase_phase2
+    data_location: building_06/washing_machine.h5
+  16:
+    <<: *3-phase_phase3
+    data_location: building_06/washing_machine.h5
+
+appliances:
+  - type: AHU
+    instance: 1
+    meters: [4]
+
+  - original_name: boiler
+    type: electric water heating appliance
+    instance: 1
+    meters: [5, 6, 7]
+
+  - type: dish washer
+    instance: 1
+    meters: [8]
+
+  - type: electric stove
+    instance: 1
+    meters: [9, 10, 11]
+
+  - type: fridge
+    instance: 1
+    meters: [12]
+
+  - type: tumble dryer
+    instance: 1
+    meters: [13]
+
+  - type: washing machine
+    instance: 1
+    meters: [14, 15, 16]
+
+description: >
+  The CII-Adapter has been replaced at 2018-12-03.

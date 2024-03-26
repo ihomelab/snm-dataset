@@ -1,0 +1,48 @@
+instance: 9
+original_name: building_09
+
+timeframe: &timeframe
+  start: 2019-11-28
+  end: 2020-10-30
+  
+elec_meters:
+  1: &smart_meter
+    device_model: CII-Adapter
+    site_meter: true
+    data_location: building_09/cii-adapter.h5
+    timeframe:
+        <<: *timeframe
+        start: 2019-12-10
+  2: *smart_meter
+  3: *smart_meter
+  4: &OnOff_phase0
+    device_model: on_off_sensor
+    submeter_of: 0
+    submeter_of_is_uncertain: true
+    data_location: building_09/electric_stove.h5
+    timeframe:
+        start: 2019-11-20
+        end: 2020-07-03
+  5: &plug_phase1
+    device_model: smart-me_plug
+    submeter_of: 1
+    data_location: building_09/freezer.h5
+  6: &plug_phase2
+    device_model: smart-me_plug
+    submeter_of: 2
+    data_location: building_09/fridge.h5
+
+appliances:
+  - type: electric stove
+    instance: 1
+    meters: [4]
+
+  - type: freezer
+    instance: 1
+    meters: [5]
+
+  - type: fridge
+    instance: 1
+    meters: [6]
+
+description: >

@@ -1,0 +1,110 @@
+instance: 3
+original_name: building_03
+
+timeframe: &timeframe
+  start: 2020-02-21
+  end: 2020-09-25
+  
+elec_meters:
+  1: &smart-meter
+    device_model: CII-Adapter
+    site_meter: true
+    data_location: building_03/cii-adapter.h5
+    timeframe:
+        <<: *timeframe
+        start: 2020-04-08
+  2: *smart-meter
+  3: *smart-meter
+  4: &3-phase_phase1
+    device_model: smart-me_3-phase
+    submeter_of: 1
+    data_location: building_03/boiler.h5
+  5: &3-phase_phase2
+    device_model: smart-me_3-phase
+    submeter_of: 2
+    data_location: building_03/boiler.h5
+  6: &3-phase_phase3
+    device_model: smart-me_3-phase
+    submeter_of: 3
+    data_location: building_03/boiler.h5
+  7:
+    <<: *3-phase_phase1
+    data_location: building_03/dishwasher.h5
+  8:
+    <<: *3-phase_phase2
+    data_location: building_03/dishwasher.h5
+  9:
+    <<: *3-phase_phase2
+    data_location: building_03/dishwasher.h5
+  10:
+    <<: *3-phase_phase1
+    data_location: building_03/electric_stove.h5
+  11:
+    <<: *3-phase_phase2
+    data_location: building_03/electric_stove.h5
+  12:
+    <<: *3-phase_phase3
+    data_location: building_03/electric_stove.h5
+  13: &plug_phase3
+    device_model: smart-me_plug
+    submeter_of: 3
+    data_location: building_03/fridge.h5
+  14:
+    <<: *3-phase_phase1
+    data_location: building_03/oven.h5
+  15:
+    <<: *3-phase_phase2
+    data_location: building_03/oven.h5
+  16:
+    <<: *3-phase_phase3
+    data_location: building_03/oven.h5
+  17:
+    <<: *3-phase_phase1
+    data_location: building_03/tumble_dryer.h5
+  18:
+    <<: *3-phase_phase2
+    data_location: building_03/tumble_dryer.h5
+  19:
+    <<: *3-phase_phase3
+    data_location: building_03/tumble_dryer.h5
+  20:
+    <<: *3-phase_phase1
+    data_location: building_03/washing_machine.h5
+  21:
+    <<: *3-phase_phase2
+    data_location: building_03/washing_machine.h5
+  22:
+    <<: *3-phase_phase3
+    data_location: building_03/washing_machine.h5
+
+appliances:
+  - original_name: boiler
+    type: electric water heating appliance
+    instance: 1
+    meters: [4, 5, 6]
+    
+  - type: dish washer
+    instance: 1
+    meters: [7, 8, 9]
+
+  - type: electric stove
+    instance: 1
+    meters: [10, 11, 12]
+
+  - type: fridge
+    instance: 1
+    meters: [13]
+
+  - type: electric oven
+    instance: 1
+    meters: [14, 15, 16]
+
+  - type: tumble dryer
+    instance: 1
+    meters: [17, 18, 19]
+
+  - type: washing machine
+    instance: 1
+    meters: [20, 21, 22]
+
+description: >

@@ -1,0 +1,50 @@
+instance: 15
+original_name: building_15
+
+timeframe: &timeframe
+  start: 2020-02-19
+  end: 2020-10-30
+  
+elec_meters:
+  1: &smart_meter
+    device_model: CII-Adapter
+    site_meter: true
+    data_location: building_15/cii-adapter.h5
+    timeframe:
+    	<<: *timeframe
+    	end: 2020-06-10
+  2: *smart_meter
+  3: *smart_meter
+  4: &plug_phase3
+    device_model: smart-me_plug
+    submeter_of: 3
+    data_location: building_15/dishwasher.h5
+  5:
+    <<: *plug_phase3
+    data_location: building_15/freezer.h5
+  6: &plug_phase1
+    device_model: smart-me_plug
+    submeter_of: 1
+    data_location: building_15/tumble_dryer.h5
+  7:
+    <<: *plug_phase1
+    data_location: building_15/washing_machine.h5
+
+appliances:
+  - type: dishwasher
+    instance: 1
+    meters: [4]
+
+  - type: freezer
+    instance: 1
+    meters: [5]
+
+  - type: tumble_dryer
+    instance: 1
+    meters: [6]
+
+  - type: washing machine
+    instance: 1
+    meters: [7]
+
+description: >

@@ -1,0 +1,35 @@
+instance: 20
+original_name: building_20
+
+timeframe: &timeframe
+  start: 2019-11-28
+  end: 2020-11-24
+  
+elec_meters:
+  1: &smart_meter
+    device_model: CII-Adapter
+    site_meter: true
+    data_location: building_20/cii-adapter.h5
+    timeframe:
+        <<: *timeframe
+        start: 2020-02-13
+  2: *smart_meter
+  3: *smart_meter
+  4: &plug_phase1
+    device_model: smart-me_plug
+    submeter_of: 1
+    data_location: building_20/freezer.h5
+  5:
+    <<: *plug_phase1
+    data_location: building_20/tumble_dryer.h5
+
+appliances:
+  - type: freezer
+    instance: 1
+    meters: [4]
+
+  - type: tumble_dryer
+    instance: 1
+    meters: [5]
+
+description: >

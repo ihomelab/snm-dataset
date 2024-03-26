@@ -1,0 +1,91 @@
+instance: 2
+original_name: building_02
+
+timeframe: &timeframe
+  start: 2018-05-12
+  end: 2020-12-02
+  
+elec_meters:
+  1: &smart_meter
+    device_model: CII-Adapter
+    site_meter: true
+    data_location: building_02/cii-adapter.h5
+    timeframe:
+        <<: *timeframe
+        start: 2018-08-30
+  2: *smart_meter
+  3: *smart_meter
+  4: &3-phase_phase1
+    device_model: smart-me_3-phase
+    submeter_of: 1
+    data_location: building_02/boiler.h5
+  5: &3-phase_phase2
+    device_model: smart-me_3-phase
+    submeter_of: 2
+    data_location: building_02/boiler.h5
+  6: &3-phase_phase3
+    device_model: smart-me_3-phase
+    submeter_of: 3
+    data_location: building_02/boiler.h5
+  7: &plug_phase0
+    device_model: smart-me_plug
+    submeter_of: 0
+    data_location: building_02/dehumidifier.h5
+    timeframe:
+        <<: *timeframe
+        end: 2018-09-04
+  8: &plug_phase1
+    device_model: smart-me_plug
+    submeter_of: 1
+    data_location: building_02/dishwasher.h5
+    timeframe:
+        <<: *timeframe
+        start: 2018-05-19
+  9:
+    <<: *3-phase_phase1
+    data_location: building_02/electric_stove.h5
+  10:
+    <<: *3-phase_phase2
+    data_location: building_02/electric_stove.h5
+  11:
+    <<: *3-phase_phase3
+    data_location: building_02/electric_stove.h5
+  12: &plug_phase3
+    device_model: smart-me_plug
+    submeter_of: 3
+    data_location: building_02/fridge.h5
+  13:
+    <<: *plug_phase1
+    data_location: building_02/washing_machine.h5
+    timeframe:
+        <<: *timeframe
+        start: 2018-09-05
+        end: 2019-10-31
+
+appliances:
+  - original_name: boiler
+    type: electric water heating appliance
+    instance: 1
+    meters: [4, 5, 6]
+    
+  - type: dehumidifier
+    instance: 1
+    meters: [7]
+
+  - type: dish washer
+    instance: 1
+    meters: [8]
+
+  - type: electric stove
+    instance: 1
+    meters: [9, 10, 11]
+
+  - type: fridge
+    instance: 1
+    meters: [12]
+
+  - type: washing machine
+    instance: 1
+    meters: [13]
+
+description: >

@@ -1,0 +1,121 @@
+instance: 7
+original_name: building_07
+
+timeframe: &timeframe
+  start: 2018-08-13
+  end: 2020-12-02
+ 
+elec_meters:
+  1: &smart_meter
+    device_model: CII-Adapter
+    site_meter: true
+    data_location: building_07/cii-adapter.h5
+  2: *smart_meter
+  3: *smart_meter
+  4: &3-phase_phase1
+    device_model: smart-me_3-phase
+    submeter_of: 1
+    data_location: building_07/boiler.h5
+  5: &3-phase_phase2
+    device_model: smart-me_3-phase
+    submeter_of: 2
+    data_location: building_07/boiler.h5
+  6: &3-phase_phase3
+    device_model: smart-me_3-phase
+    submeter_of: 3
+    data_location: building_07/boiler.h5
+  7:
+    <<: *3-phase_phase1
+    data_location: building_07/dishwasher.h5
+    timeframe:
+        <<: *timeframe
+        start: 2018-08-15
+  8:
+    <<: *3-phase_phase2
+    data_location: building_07/dishwasher.h5
+    timeframe:
+        <<: *timeframe
+        start: 2018-08-14
+  9:
+    <<: *3-phase_phase3
+    data_location: building_07/dishwasher.h5
+    timeframe:
+        <<: *timeframe
+        start: 2018-08-14
+  10:
+    <<: *3-phase_phase1
+    data_location: building_07/electric_stove.h5
+  11:
+    <<: *3-phase_phase2
+    data_location: building_07/electric_stove.h5
+  12:
+    <<: *3-phase_phase3
+    data_location: building_07/electric_stove.h5
+  13: &plug_phase3
+    device_model: smart-me_plug
+    submeter_of: 3
+    data_location: building_07/freezer_basement.h5
+    timeframe:
+        <<: *timeframe
+        start: 2018-06-12
+  14:
+    <<: *plug_phase3
+    data_location: building_07/fridge.h5
+    timeframe:
+        <<: *timeframe
+        start: 2018-06-14
+  15:
+    <<: *plug_phase3
+    data_location: building_07/fridge_basement.h5
+    timeframe:
+        <<: *timeframe
+        start: 2018-06-12
+  16:
+    <<: *3-phase_phase1
+    data_location: building_07/washer_dryer.h5
+  17:
+    <<: *3-phase_phase2
+    data_location: building_07/washer_dryer.h5
+  18:
+    <<: *3-phase_phase3
+    data_location: building_07/washer_dryer.h5
+
+appliances:
+  - original_name: boiler
+    type: electric water heating appliance
+    instance: 1
+    meters: [4, 5, 6]
+
+  - type: dish washer
+    instance: 1
+    meters: [7, 8, 9]
+
+  - type: electric stove
+    instance: 1
+    meters: [10, 11, 12]
+
+  - original_name: freezer basement 
+    type: freezer
+    instance: 1
+    meters: [13]
+    room: basement,7
+
+  - type: fridge
+    instance: 1
+    meters: [14]
+
+  - original_name: fridge basement 
+    type: fridge
+    instance: 2
+    meters: [15]
+    room: basement,7
+
+  - type: washing machine
+    instance: 1
+    meters: [16, 17, 18]
+
+description: >
+  The CII-Adapter has been changed at 2019-04-11. It has stopped sending data at 2019-04-04.
+  There is a gap in the CII-Adapter data between 2019-07-15 and 2019-10-19.
+  The house contains two fridges and one freezer.
+  Washing machine and tumble dryer are connected to the same electrical submeter.

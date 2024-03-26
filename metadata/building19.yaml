@@ -1,0 +1,73 @@
+instance: 19
+original_name: building_19
+
+timeframe: &timeframe
+  start: 2019-11-28
+  end: 2020-09-09
+
+elec_meters:
+  1: &smart_meter
+    device_model: CII-Adapter
+    site_meter: true
+    data_location: building_19/cii-adapter.h5
+    timeframe:
+        <<: *timeframe
+        start: 2020-02-13
+  2: *smart_meter
+  3: *smart_meter
+  4: &plug_phase1
+    device_model: smart-me_plug
+    submeter_of: 1
+    data_location: building_19/dishwasher.h5
+    timeframe:
+        <<: *timeframe
+        end: 2020-09-06
+  5: &plug_phase3
+    device_model: smart-me_plug
+    submeter_of: 3
+    data_location: building_19/freezer.h5
+  6:
+    <<: *plug_phase1
+    data_location: building_19/fridge.h5
+  7:
+    <<: *smart_meter
+    data_location: building_19/heat_pump.h5
+    disabled: true
+    timeframe:
+        <<: *timeframe
+        start: 2020-02-13
+  8:
+    <<: *plug_phase3
+    data_location: building_19/tumble_dryer.h5
+  9:
+    <<: *plug_phase1
+    data_location: building_19/washing_machine.h5
+
+appliances:
+  - type: dishwasher
+    instance: 1
+    meters: [4]
+
+  - type: freezer
+    instance: 1
+    meters: [5]
+
+  - type: fridge
+    instance: 1
+    meters: [6]
+
+  - type: heat pump
+    instance: 1
+    meters: [7]
+
+  - type: tumble_dryer
+    instance: 1
+    meters: [8]
+
+  - type: washing machine
+    instance: 1
+    meters: [9]
+
+description: >
+  The heat pump power consumption is measured by its own CII-Adapter and is therefore not part of the site meter.
+  Therefore, the heat pump CII-Adapter is set as disabled and ignored by NILM TK, but the data is provided.

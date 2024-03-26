@@ -1,0 +1,35 @@
+# This YAML file describes aspects about the entire dataset.
+name: SNM
+long_name: smartNIALMeter
+creators:
+- Camenzind, Martin
+- Friedli, Martin
+- Gugolz, Gianni
+- Huber, Patrick
+- Kaufmann, Lukas
+- Kniesel, Guido
+- Paice, Andrew
+- Rumsch, Andreas
+- Vogel, Manuel
+timezone: CH
+date: 2024
+contact: ihomelab@hslu.ch
+institution: iHomeLab - Lucerne University of Applied Sciences and Arts
+description: >
+  A dataset containing data from 20 buildings, measured for 1-2 years.
+  The data is sampled in 5 seconds intervals.
+  The data is collected in Switzerland.
+number_of_buildings: 20
+identifier: TBD
+subject: >
+  Disaggregated power consumption from domestic buildings in europe.
+timeframe: # TBD: check 'start' and 'end' as soon as dataset is ready
+  start: 2018-01-03
+  end: 2020-12-02
+geo_location: # iHomeLab
+  locality: Horw
+  country: CH
+  latitude: 47.014875
+  longitude: 8.305303
+related_documents:
+  - TBD

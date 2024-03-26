@@ -1,0 +1,60 @@
+instance: 11
+original_name: building_11
+
+timeframe: &timeframe
+  start: 2020-02-05
+  end: 2020-10-30
+  
+elec_meters:
+  1: &smart_meter
+    device_model: CII-Adapter
+    site_meter: true
+    data_location: building_11/cii-adapter.h5
+  2: *smart_meter
+  3: *smart_meter
+  4: &OnOff_phase0
+    device_model: on_off_sensor
+    submeter_of: 0
+    submeter_of_is_uncertain: true
+    data_location: building_11/boiler.h5
+    timeframe:
+        start: 2020-01-21
+        end: 2020-11-03
+  5: &plug_phase2
+    device_model: smart-me_plug
+    submeter_of: 2
+    data_location: building_11/freezer.h5
+  6: &plug_phase1
+    device_model: smart-me_plug
+    submeter_of: 1
+    data_location: building_11/fridge.h5
+  7:
+    <<: *plug_phase2
+    data_location: building_11/tumble_dryer.h5
+  8:
+    <<: *plug_phase2
+    data_location: building_11/washing_machine.h5
+
+appliances:
+  - original_name: boiler
+    type: electric furnace
+    instance: 1
+    meters: [4]
+
+  - type: freezer
+    instance: 1
+    meters: [5]
+
+  - type: fridge
+    instance: 1
+    meters: [6]
+
+  - type: tumble dryer
+    instance: 1
+    meters: [7]
+
+  - type: washing machine
+    instance: 1
+    meters: [8]
+
+description: >

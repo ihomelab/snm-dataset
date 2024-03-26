@@ -1,0 +1,17 @@
+dask==2023.11.0
+distributed==2023.11.0
+msgpack==1.0.7
+numpy==1.26.3
+pandas==2.1.4
+tables==3.9.2
+h5py==3.10.0
+matplotlib==3.8.3
+fastparquet==2024.2.0
+bokeh==3.3.4
+pyyaml==6.0.1
+jupyterlab==4.1.2
+configparser==6.0.0
+tqdm==4.65.0
+setuptools==68.0.0
+pyarrow==15.0.0
+notebook==7.0.1

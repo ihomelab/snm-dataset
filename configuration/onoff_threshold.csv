@@ -1,0 +1,7 @@
+building, application, threshold, filter_length
+building_09, electric_stove, 500, None
+building_11, boiler, 700, 8000
+building_12, electric_stove, 550, None
+building_12, heat_pump, 300, 20
+building_16, heat_pump, 700, None
+building_18, heat_pump, 200, None
