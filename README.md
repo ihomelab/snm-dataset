@@ -45,9 +45,5 @@ If you want to adapt the preprocessing you can adapt the preprocessing steps in 
 ## Dependencies
 The dependencies of the script can be found in the requirements.txt file.
 
-# Phase Retrieval
-The corresponding phases for appliances connected to a single phase can be found at `results/appliance_phase_correlations.csv`.
-The highest correlation to a main phase is assumed to be the correct assignment. Correlations are only calculated using samples where the active power on the sub-meter is greater than 1 Watt. If there are no such samples, the correlations will be NAN and an assignment is not possible.
-
 ## Publication
-TODO: Insert publication reference here
+10.5281/zenodo.10875988
