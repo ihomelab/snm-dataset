@@ -46,5 +46,7 @@ If you want to adapt the preprocessing you can adapt the preprocessing steps in 
 The dependencies of the script can be found in the requirements.txt file.
 
 ## Publication
-- Link to publication paper: https://www.sciencedirect.com (TBD)
+- Link to publication paper: https://doi.org/10.1016/j.dib.2024.110854
 - Link to data: https://zenodo.org/records/10875988
+
+If you use our dataset please consider citing our paper.
